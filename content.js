@@ -1,7 +1,7 @@
 // content.js
 // This script runs on https://login.microsoftonline.com/*
 
-console.log('Login Selector content script loaded.');
+console.log("Login Selector content script loaded.");
 
 const accountMap = {
   "_debug@prdtrs01.prod.outlook.com": [
@@ -31,8 +31,8 @@ const accountMap = {
 function selectAccount(currentUrl) {
   const urlObj = new URL(currentUrl);
   const urlParams = new URLSearchParams(urlObj.search);
-  const clientId = urlParams.get('client_id');
-  const resource = urlParams.get('resource');
+  const clientId = urlParams.get("client_id");
+  const resource = urlParams.get("resource");
   const path = urlObj.href;
 
   // Check each account rule
@@ -58,9 +58,9 @@ function selectAccount(currentUrl) {
  * @returns {string|null} The matched account name or null if not found.
  */
 function findAndClickAccountInTables(account) {
-  const tables = document.getElementsByClassName('table');
+  const tables = document.getElementsByClassName("table");
   for (const table of tables) {
-    const text = table.innerText || table.textContent || '';
+    const text = table.innerText || table.textContent || "";
     const words = text.split(/\s+/);
     for (const word of words) {
       if (word.endsWith(account)) {
@@ -74,16 +74,18 @@ function findAndClickAccountInTables(account) {
 
 // Ensure logic runs whether DOMContentLoaded has already fired or not
 function onPageReady() {
-  const account = selectAccount(window.location.href);
-  if (account) {
-    findAndClickAccountInTables(account);
-  } else {
-    console.log('No account matched for this page.');
-  }
+  setTimeout(() => {
+    const account = selectAccount(window.location.href);
+    if (account) {
+      findAndClickAccountInTables(account);
+    } else {
+      console.log("No account matched for this page.");
+    }
+  }, 1000); // Delay to ensure the page is fully loaded
 }
 
-if (document.readyState === 'loading') {
-  window.addEventListener('DOMContentLoaded', onPageReady);
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", onPageReady);
 } else {
   onPageReady();
 }

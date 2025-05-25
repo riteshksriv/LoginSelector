@@ -6,18 +6,18 @@ console.log("Login Selector content script loaded.");
 const accountMap = {
   "_debug@prdtrs01.prod.outlook.com": [
     {
-      clientId: "c44b4083-3bb0-49c1-b47d-974e53cbdf3c",
+      client_id: "c44b4083-3bb0-49c1-b47d-974e53cbdf3c",
       client_id: "e9f49c6b-5ce5-44c8-925d-015017e9f7ad"
     },
   ],
   "_jit@prdtrs01.prod.outlook.com": [
     {
-      clientId: "00000000-0000-0000-0000-000000000000",
+      client_id: "00000000-0000-0000-0000-000000000000",
     },
   ],
   "@microsoft.com": [
     {
-      clientId: "b5b61b37-aeb3-424b-803b-356fb0c0f0d7",
+      client_id: "b5b61b37-aeb3-424b-803b-356fb0c0f0d7",
     },
     {
       resource: "https://graph.microsoft.com",
@@ -32,14 +32,14 @@ const accountMap = {
 function selectAccount(currentUrl) {
   const urlObj = new URL(currentUrl);
   const urlParams = new URLSearchParams(urlObj.search);
-  const clientId = urlParams.get("client_id");
+  const client_id = urlParams.get("client_id");
   const resource = urlParams.get("resource");
   const path = urlObj.href;
 
   // Check each account rule
   for (const [account, rules] of Object.entries(accountMap)) {
     for (const rule of rules) {
-      if (rule.clientId && clientId === rule.clientId) {
+      if (rule.client_id && client_id === rule.client_id) {
         return account;
       }
       if (rule.resource && resource === rule.resource) {

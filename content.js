@@ -7,7 +7,12 @@ const accountMap = {
   "_debug@prdtrs01.prod.outlook.com": [
     {
       client_id: "c44b4083-3bb0-49c1-b47d-974e53cbdf3c",
-      client_id: "e9f49c6b-5ce5-44c8-925d-015017e9f7ad"
+    },
+    {
+      client_id: "e9f49c6b-5ce5-44c8-925d-015017e9f7ad",
+    },
+    {
+      redirect_uri: "https://ms.portal.azure.com",
     },
   ],
   "_jit@prdtrs01.prod.outlook.com": [
@@ -34,6 +39,7 @@ function selectAccount(currentUrl) {
   const urlParams = new URLSearchParams(urlObj.search);
   const client_id = urlParams.get("client_id");
   const resource = urlParams.get("resource");
+  const redirect_uri = urlParams.get("redirect_uri");
   const path = urlObj.href;
 
   // Check each account rule
@@ -46,6 +52,9 @@ function selectAccount(currentUrl) {
         return account;
       }
       if (rule.pathStartsWith && path.startsWith(rule.pathStartsWith)) {
+        return account;
+      }
+      if (rule.redirect_uri && redirect_uri === rule.redirect_uri) {
         return account;
       }
     }

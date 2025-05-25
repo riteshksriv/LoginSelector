@@ -7,6 +7,7 @@ const accountMap = {
   "_debug@prdtrs01.prod.outlook.com": [
     {
       clientId: "c44b4083-3bb0-49c1-b47d-974e53cbdf3c",
+      client_id: "e9f49c6b-5ce5-44c8-925d-015017e9f7ad"
     },
   ],
   "_jit@prdtrs01.prod.outlook.com": [

@@ -8,14 +8,18 @@
     "activeTab"
   ],
   "host_permissions": [
-    "https://login.microsoftonline.com/*"
+    "https://login.microsoftonline.com/*",
+    "https://tafe.prdtrs01.outlook.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://login.microsoftonline.com/*"],
+      "matches": [
+        "https://login.microsoftonline.com/*",
+        "https://tafe.prdtrs01.outlook.com/*"
+      ],
       "js": ["content.js"]
     }
   ],

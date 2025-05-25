@@ -54,11 +54,20 @@ function selectAccount(currentUrl) {
 }
 
 /**
- * Scans the page for elements with className 'table', clicks the first element containing a word ending with an accountMap key, and returns the account name.
- * @param {Object} account - The account to find in the tables.
- * @returns {string|null} The matched account name or null if not found.
+ * Scans the page for elements with className 'table' or a specific button, clicks the first matching element based on config, and returns the account name or action.
+ * @param {string} account - The account to find in the tables.
+ * @param {Array<{hostname: string, buttonId: string}>} [options] - Optional config for site-specific logic.
+ *   options.buttonId: If provided, will try to click this button instead of table logic.
+ *   options.hostname: If provided, restricts button click to this hostname.
+ * @returns {string|null} The matched account name, 'buttonClicked', or null if not found.
  */
-function findAndClickAccountInTables(account) {
+function findAndClickAccountOrButton(account, options = [{}]) {
+  // If a buttonId and hostname are provided, try to click the button for that site
+  var buttonToClick = options.find(option => document.getElementById(option.buttonId) && window.location.hostname === option.hostname);
+  if (account == null && buttonToClick) {
+    buttonToClick.click();
+    return 'buttonClicked';
+  }
   const tables = document.getElementsByClassName("table");
   for (const table of tables) {
     const text = table.innerText || table.textContent || "";
@@ -73,15 +82,10 @@ function findAndClickAccountInTables(account) {
   return null;
 }
 
-// Ensure logic runs whether DOMContentLoaded has already fired or not
 function onPageReady() {
   setTimeout(() => {
     const account = selectAccount(window.location.href);
-    if (account) {
-      findAndClickAccountInTables(account);
-    } else {
-      console.log("No account matched for this page.");
-    }
+    findAndClickAccountOrButton(account, [{ buttonId: "AuthByCardBtn", hostname: "tafe.prdtrs01.outlook.com" }]);
   }, 1000); // Delay to ensure the page is fully loaded
 }
 

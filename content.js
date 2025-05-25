@@ -72,12 +72,18 @@ function findAndClickAccountInTables(account) {
   return null;
 }
 
-// Call selectAccount on page load
-window.addEventListener('DOMContentLoaded', function() {
+// Ensure logic runs whether DOMContentLoaded has already fired or not
+function onPageReady() {
   const account = selectAccount(window.location.href);
   if (account) {
     findAndClickAccountInTables(account);
   } else {
     console.log('No account matched for this page.');
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', onPageReady);
+} else {
+  onPageReady();
+}

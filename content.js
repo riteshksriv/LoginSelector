@@ -2,7 +2,6 @@
 // This script runs on https://login.microsoftonline.com/*
 
 console.log('Login Selector content script loaded.');
-// Add your logic here to interact with the login page
 
 const accountMap = {
   "_debug@prdtrs01.prod.outlook.com": [

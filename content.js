@@ -76,9 +76,9 @@ function selectAccount(currentUrl) {
  */
 function findAndClickAccountOrButton(account, options = [{}]) {
   // If a buttonId and hostname are provided, try to click the button for that site
-  var buttonToClick = options.find(option => document.getElementById(option.buttonId) && window.location.hostname === option.hostname);
-  if (account == null && buttonToClick) {
-    buttonToClick.click();
+  var buttonOpt = options.find(option => document.getElementById(option.buttonId) && window.location.hostname === option.hostname);
+  if (account == null && buttonOpt) {
+    document.getElementById(buttonOpt.buttonId).click();
     return 'buttonClicked';
   }
   const tables = document.getElementsByClassName("table");

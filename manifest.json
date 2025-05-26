@@ -11,7 +11,7 @@
     "https://login.microsoftonline.com/*",
     "https://tafe.prdtrs01.outlook.com/*",
     "https://ms.portal.azure.com/*",
-    "portal.microsofticm.com/*",
+    "https://portal.microsofticm.com/*",
     "https://*.microsoft.com/*"
   ],
   "background": {

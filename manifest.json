@@ -10,7 +10,9 @@
   "host_permissions": [
     "https://login.microsoftonline.com/*",
     "https://tafe.prdtrs01.outlook.com/*",
-    "https://ms.portal.azure.com/*"
+    "https://ms.portal.azure.com/*",
+    "portal.microsofticm.com/*",
+    "https://*.microsoft.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -20,7 +22,9 @@
       "matches": [
         "https://login.microsoftonline.com/*",
         "https://tafe.prdtrs01.outlook.com/*",
-        "https://ms.portal.azure.com/*"
+        "https://ms.portal.azure.com/*",
+        "https://portal.microsofticm.com/*",
+        "https://*.microsoft.com/*"
       ],
       "js": ["content.js"]
     }

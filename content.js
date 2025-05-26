@@ -61,7 +61,7 @@ function selectAccount(currentUrl) {
       if (rule.pathStartsWith && path.startsWith(rule.pathStartsWith)) {
         return account;
       }
-      if (rule.redirect_uri && redirect_uri === rule.redirect_uri) {
+      if (rule.redirect_uri && redirect_uri && redirect_uri.indexOf(rule.redirect_uri) !== -1) {
         return account;
       }
     }

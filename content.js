@@ -35,6 +35,9 @@ const accountMap = {
       pathStartsWith:
         "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47",
     },
+    {
+      redirect_uri: "https://eng.ms",
+    }
   ],
 };
 
@@ -98,7 +101,10 @@ function findAndClickAccountOrButton(account, options = [{}]) {
 function onPageReady() {
   setTimeout(() => {
     const account = selectAccount(window.location.href);
-    findAndClickAccountOrButton(account, [{ buttonId: "AuthByCardBtn", hostname: "tafe.prdtrs01.outlook.com" }]);
+    findAndClickAccountOrButton(account, [
+      { buttonId: "AuthByCardBtn", hostname: "tafe.prdtrs01.outlook.com" },
+      { buttonId: "signInButton", hostname: "portal.microsofticm.com" },
+    ]);
   }, 1000); // Delay to ensure the page is fully loaded
 }
 

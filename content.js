@@ -14,6 +14,10 @@ const accountMap = {
     {
       redirect_uri: "https://ms.portal.azure.com",
     },
+    {
+      pathStartsWith:
+        "https://login.microsoftonline.com/cdc5aeea-15c5-4db6-b079-fcadd2505dc2",
+    },
   ],
   "_jit@prdtrs01.prod.outlook.com": [
     {

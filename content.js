@@ -36,8 +36,11 @@ const accountMap = {
         "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47",
     },
     {
+      redirect_uri: "https://portal.microsofticm.com",
+    },
+    {
       redirect_uri: "https://eng.ms",
-    }
+    },
   ],
 };
 
